@@ -1,10 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
+
 <!-- ================= HERO SECTION ================= -->
 <div class="relative px-8 py-32 md:py-48 text-center bg-cover bg-center bg-no-repeat" 
      style="background-image: url('{{ asset('images/backgrounds/bg-home2.png') }}');">
-  <div class="bg-slate-800/40 backdrop-blur-sm rounded-xl shadow-2xl w-3/4 max-w-6xl mx-auto mt-[-120px] overflow-hidden">
+  <div class="feature-item duration-500 transition-all bg-slate-800/40 backdrop-blur-sm rounded-xl shadow-2xl w-3/4 max-w-6xl mx-auto mt-[-120px] overflow-hidden">
     <h1 class="text-4xl md:text-5xl font-extrabold text-white pt-6">
       SOLUSI <br> RANTAI DINGIN <br> BERBASIS TEKNOLOGI DIGITAL
     </h1>
@@ -32,11 +33,11 @@
      ] }"
      x-init="setInterval(() => current = (current + 1) % images.length, 4000)"
      class="px-6 md:px-20 py-16 bg-white">
-
+  
   <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-10 items-center">
 
     <!-- Gambar Slideshow -->
-    <div class="relative flex justify-center md:justify-start overflow-hidden rounded-2xl shadow-xl w-full h-[350px] md:h-[450px]">
+    <div class="feature-item duration-500 transition-all relative flex justify-center md:justify-start overflow-hidden rounded-2xl shadow-xl w-full h-[350px] md:h-[450px]">
       <template x-for="(image, index) in images" :key="index">
         <img 
           :src="image" 
@@ -71,23 +72,14 @@
 
       <!-- Statistik -->
       <div class="grid grid-cols-2 gap-6">
-        @foreach ([
-          ['gmi-meat.png', 'Menangani unggas, daging, laut & es krim dan lain-lain.'],
-          ['gmi-store.png', 'Menangani unggas, daging, laut & es krim dan lain-lain.'],
-          ['gmi-company.png', 'Mendukung hotel, restoran, dan bisnis dengan solusi cold chain terpercaya.'],
-        ] as [$icon, $text])
-          <div class="flex items-center gap-4">
-            <div class="flex items-center gap-4">
-              <img src="{{ asset('images/icons/' . $icon) }}" 
-                  alt="Icon" 
-                  class="w-12 h-12 object-contain">
-              <p class="text-gray-700 leading-relaxed text-sm">
-                {{ $text }}
-              </p>
-            </div>
+        @foreach ($aboutStats as [$icon, $text])
+          <div class="feature-item duration-500 transition-all flex items-center gap-4">
+            <img src="{{ asset('images/icons/' . $icon) }}" alt="Icon" class="w-12 h-12 object-contain">
+            <p class="text-gray-700 leading-relaxed text-sm">{{ $text }}</p>
           </div>
         @endforeach
       </div>
+
     </div>
   </div>
 </div>
@@ -100,18 +92,14 @@
     <div class="bg-[#10141f]/10 p-4 rounded shadow">
       <h2 class="font-bold text-black text-xl mb-3">Keunggulan Utama Kami</h2>
       <ul class="space-y-2 text-sm">
-        @foreach ([
-          ['gmi-map.png', 'Aksesibilitas yang mudah'],
-          ['gmi-shield.png', 'Sistem keamanan 24/7'],
-          ['gmi-suhu.png', 'Pemantauan suhu otomatis 24/7'],
-          ['gmi-comp.png', 'Didukung oleh Warehouse Management System (WMS)'],
-        ] as [$icon, $text])
-        <li class="flex items-center gap-4 bg-blue-500 hover:bg-sky-600 shadow-md shadow-blue-500/50 -p-2 rounded transition">
-          <img src="{{ asset('images/icons/' . $icon) }}" class="w-16 h-16 invert brightness-0 object-contain flex-shrink-0" alt="">
-          <span class="text-sm font-bold text-white">{{ $text }}</span>
-        </li>
+        @foreach ($advantages as [$icon, $text])
+          <li class="feature-item duration-500 transition-all flex items-center gap-4 bg-blue-500 hover:bg-sky-600 shadow-md shadow-blue-500/50 -p-2 rounded">
+            <img src="{{ asset('images/icons/' . $icon) }}" class="w-16 h-16 invert brightness-0 object-contain" alt="">
+            <span class="text-sm font-bold text-white">{{ $text }}</span>
+          </li>
         @endforeach
       </ul>
+
     </div>
 
     <!-- Deskripsi -->
@@ -132,16 +120,11 @@
     <div class="md:col-span-3 bg-black/10 p-6 rounded shadow mt-6">
       <h2 class="font-bold text-black text-3xl mb-6 text-center">Fasilitas & Kapasitas</h2>
       <div class="grid grid-cols-1 md:grid-cols-4 gap-4 ease-in-out">
-        @foreach ([
-          ['gmi-parking.png', 'Area parkir yang luas, dapat menampung hingga 30 kontainer'],
-          ['gmi-inventory.png', 'Kapasitas penyimpanan (Tahap 1): ±10,000 posisi pallet (PP)'],
-          ['gmi-truck.png', '8 Dermaga pemuatan yang dilengkapi dengan pelindung dermaga dan penyeimbang'],
-          ['gmi-pallete.png', 'Tahap 2 (Q1 2026): Tambahan ±12,000 PP'],
-        ] as [$icon, $desc])
-        <div class="feature-item duration-500 bg-blue-500 hover:bg-sky-600 shadow-blue-500/50 p-6 rounded-lg shadow-md hover:shadow-xl transition flex flex-col items-center text-center gap-2">
-          <img src="{{ asset('images/icons/' . $icon) }}" class="w-24 h-24 invert brightness-0 object-contain" alt="">
-          <span class="text-sm font-bold text-white">{{ $desc }}</span>
-        </div>
+        @foreach ($facilities as [$icon, $desc])
+          <div class="feature-item duration-500 transition-all bg-blue-500 hover:bg-sky-600 shadow-blue-500/50 p-6 rounded-lg shadow-md hover:shadow-xl flex flex-col items-center text-center gap-2">
+            <img src="{{ asset('images/icons/' . $icon) }}" class="w-24 h-24 invert brightness-0 object-contain" alt="">
+            <span class="text-sm font-bold text-white">{{ $desc }}</span>
+          </div>
         @endforeach
       </div>
     </div>
@@ -167,11 +150,7 @@
   </div> -->
     <h2 class="font-bold text-black text-3xl mb-6 text-center">Komitmen Kami</h2>
     <div id="features" class="flex justify-center flex-wrap gap-10 md:gap-16 text-black mt-10">
-      @foreach ([
-        ['gmi-green.png', 'Green', 'text-lime-600'],
-        ['gmi-modern.png', 'Modern', 'text-blue-600'],
-        ['gmi-integrated.png', 'Integrated', 'text-orange-600'],
-      ] as [$icon, $label, $hoverColor])
+      @foreach ($commitments as [$icon, $label, $hoverColor])
         <div class="feature-item flex flex-col items-center group cursor-pointer opacity-0 transition-all duration-500">
           <div class="bg-white p-4 rounded-full shadow-md group-hover:scale-110 group-hover:shadow-xl transition-all duration-300">
             <img src="{{ asset('images/icons/' . $icon) }}" alt="{{ $label }} Icon" class="w-10 h-10">
@@ -182,6 +161,5 @@
         </div>
       @endforeach
     </div>
-
 </div>
 @endsection
