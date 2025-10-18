@@ -27,8 +27,8 @@
 <!-- ================= ABOUT SECTION (DENGAN SLIDESHOW) ================= -->
 <div id="about" 
      x-data="{ current: 0, images: [
-      '{{ asset('images/content/about1.png') }}',
-      '{{ asset('images/content/about2.png') }}',
+      '{{ asset('images/content/about4.png') }}',
+      '{{ asset('images/content/about5.png') }}',
       '{{ asset('images/content/about3.png') }}'
      ] }"
      x-init="setInterval(() => current = (current + 1) % images.length, 4000)"
@@ -37,7 +37,7 @@
   <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-10 items-center">
 
     <!-- Gambar Slideshow -->
-    <div class="feature-item duration-500 transition-all relative flex justify-center md:justify-start overflow-hidden rounded-2xl shadow-xl w-full h-[350px] md:h-[450px]">
+    <div class="feature-item opacity-0 transition-all duration-500 relative flex justify-center md:justify-start overflow-hidden rounded-2xl shadow-xl w-full h-[350px] md:h-[450px]">
       <template x-for="(image, index) in images" :key="index">
         <img 
           :src="image" 
@@ -73,7 +73,7 @@
       <!-- Statistik -->
       <div class="grid grid-cols-2 gap-6">
         @foreach ($aboutStats as [$icon, $text])
-          <div class="feature-item duration-500 transition-all flex items-center gap-4">
+          <div class="feature-item opacity-0 transition-all duration-500 flex items-center gap-4">
             <img src="{{ asset('images/icons/' . $icon) }}" alt="Icon" class="w-12 h-12 object-contain">
             <p class="text-gray-700 leading-relaxed text-sm">{{ $text }}</p>
           </div>
@@ -93,7 +93,7 @@
       <h2 class="font-bold text-black text-xl mb-3">Keunggulan Utama Kami</h2>
       <ul class="space-y-2 text-sm">
         @foreach ($advantages as [$icon, $text])
-          <li class="feature-item duration-500 transition-all flex items-center gap-4 bg-blue-500 hover:bg-sky-600 shadow-md shadow-blue-500/50 -p-2 rounded">
+          <li class="feature-item opacity-0 transition-all duration-500 flex items-center gap-4 bg-blue-500 hover:bg-sky-600 shadow-md shadow-blue-500/50 -p-2 rounded">
             <img src="{{ asset('images/icons/' . $icon) }}" class="w-16 h-16 invert brightness-0 object-contain" alt="">
             <span class="text-sm font-bold text-white">{{ $text }}</span>
           </li>
@@ -121,7 +121,7 @@
       <h2 class="font-bold text-black text-3xl mb-6 text-center">Fasilitas & Kapasitas</h2>
       <div class="grid grid-cols-1 md:grid-cols-4 gap-4 ease-in-out">
         @foreach ($facilities as [$icon, $desc])
-          <div class="feature-item duration-500 transition-all bg-blue-500 hover:bg-sky-600 shadow-blue-500/50 p-6 rounded-lg shadow-md hover:shadow-xl flex flex-col items-center text-center gap-2">
+          <div class="feature-item opacity-0 transition-all duration-500 bg-blue-500 hover:bg-sky-600 shadow-blue-500/50 p-6 rounded-lg shadow-md hover:shadow-xl flex flex-col items-center text-center gap-2">
             <img src="{{ asset('images/icons/' . $icon) }}" class="w-24 h-24 invert brightness-0 object-contain" alt="">
             <span class="text-sm font-bold text-white">{{ $desc }}</span>
           </div>
@@ -131,35 +131,16 @@
   </div>
 </div>
 
-<!-- ================= SERVICES ================= -->
-<div id="services" class="py-10 bg-white"> 
-  <!-- <div class="max-w-6xl mx-auto text-center">
-    <h2 class="text-3xl md:text-4xl font-extrabold text-gray-800 mb-6">Layanan Kami</h2>
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-8">
-      @foreach ([
-        ['Penyimpanan Cold Storage', 'Menyediakan fasilitas penyimpanan bersuhu terkontrol untuk berbagai jenis produk, memastikan kualitas tetap terjaga.'],
-        ['Pemantauan Suhu Digital', 'Sistem pemantauan suhu real-time berbasis teknologi digital untuk memastikan kondisi optimal selama penyimpanan.'],
-        ['Manajemen Rantai Dingin', 'Solusi manajemen rantai dingin yang terintegrasi untuk meningkatkan efisiensi logistik Anda.'],
-      ] as [$title, $desc])
-      <div class="bg-slate-100 p-6 rounded-lg shadow-md hover:shadow-xl transition">
-        <h3 class="text-xl font-semibold mb-4">{{ $title }}</h3>
-        <p class="text-gray-600">{{ $desc }}</p>
+<!-- ================= Client ================= -->
+<div id="client" class="px-6 md:px-20 py-16 bg-white">
+  <h2 class="font-bold text-black text-3xl mb-6 text-center">Klien Kami</h2>
+  <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8 items-center justify-items-center">
+    @foreach ($clients as $clientLogo)
+      <div class="feature-item opacity-0 transition-all duration-500 flex items-center justify-center p-4">
+        <img src="{{ asset('images/clients/' . $clientLogo) }}" alt="Client Logo" class="max-h-16 object-contain transition duration-300">
       </div>
-      @endforeach
-    </div>
-  </div> -->
-    <h2 class="font-bold text-black text-3xl mb-6 text-center">Komitmen Kami</h2>
-    <div id="features" class="flex justify-center flex-wrap gap-10 md:gap-16 text-black mt-10">
-      @foreach ($commitments as [$icon, $label, $hoverColor])
-        <div class="feature-item flex flex-col items-center group cursor-pointer opacity-0 transition-all duration-500">
-          <div class="bg-white p-4 rounded-full shadow-md group-hover:scale-110 group-hover:shadow-xl transition-all duration-300">
-            <img src="{{ asset('images/icons/' . $icon) }}" alt="{{ $label }} Icon" class="w-10 h-10">
-          </div>
-          <p class="mt-3 text-sm md:text-base font-semibold transition-colors duration-300 group-hover:{{ $hoverColor }}">
-            {{ $label }}
-          </p>
-        </div>
-      @endforeach
-    </div>
+    @endforeach
+  </div>
 </div>
+
 @endsection

@@ -38,8 +38,17 @@ class HomeController extends Controller
             ['gmi-integrated.png', 'Integrated', 'text-orange-600'],
         ];
 
+        // data untuk bagian Klien Kami
+        $clients = [
+            'uniliver.png',
+            'gem.png',
+            'indofood.png',
+            'pokphand.png',
+            'nestle.png',
+        ];
+
         // kirim semua data ke view
-        return view('welcome', compact('aboutStats', 'advantages', 'facilities', 'commitments'));
+        return view('welcome', compact('aboutStats', 'advantages', 'facilities', 'commitments', 'clients'));
     }
 }
     

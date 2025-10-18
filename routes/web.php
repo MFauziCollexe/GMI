@@ -2,15 +2,20 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\CompanyController;
+use App\Http\Controllers\ServicesController;
+use App\Http\Controllers\InnovationController;
+use App\Http\Controllers\CareerController;
+use App\Http\Controllers\ContactController;
 
 Route::get('/', [HomeController::class, 'welcome'])->name('home');
 
-Route::get('/perusahaan-kami', [HomeController::class, 'perusahaanKami'])->name('perusahaan-kami.index');
+Route::get('/perusahaan_kami', [CompanyController::class, 'perusahaan_Kami'])->name('perusahaan_kami');
 
-Route::get('/layanan', [HomeController::class, 'layanan'])->name('layanan.index');
+Route::get('/layanan', [ServicesController::class, 'layanan'])->name('layanan');
 
-Route::get('/inovasi', [HomeController::class, 'inovasi'])->name('inovasi.index');
+Route::get('/inovasi', [InnovationController::class, 'inovasi'])->name('inovasi');
 
-Route::get('/karir', [HomeController::class, 'karir'])->name('karir.index');
+Route::get('/karir', [CareerController::class, 'karir'])->name('karir');
 
-Route::get('/kontak-kami', [HomeController::class, 'kontakKami'])->name('kontak-kami.index');
+Route::get('/kontak-kami', [ContactController::class, 'kontakKami'])->name('kontak-kami');
